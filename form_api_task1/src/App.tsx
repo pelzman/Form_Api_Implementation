@@ -1,4 +1,4 @@
-import { Button } from "antd"
+import { BaseRoute } from './routes/BaseRoutes'
 import './App.css'
 
 function App() {
@@ -6,9 +6,7 @@ function App() {
 
   return (
     <div>
-      <Button className="">
-        save me
-      </Button>
+      <BaseRoute/>
     </div>
   )
 }
