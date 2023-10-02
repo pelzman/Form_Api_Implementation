@@ -20,7 +20,7 @@ const Layout: React.FC<DashboardLinkProps> = () => {
                 <Sidebar />
             </div>
             <div className='w-screen '>
-                <div className="sm:fixed bg-white w-screen  lg:h-[129px] z-10" >
+                <div className="sm:fixed bg-transparent w-screen  lg:h-[129px] z-10" >
 
                     <Navbar />
                 </div>

@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
 
 
 
-        <div className={` " w-[70px] lg:w-[82px]" duration-500 bg-cyan h-screen  px-2 relative md:bg-[#FFF] shadow-md  `}>
+        <div className={` " w-[70px] lg:w-[82px]" duration-500 bg-cyan h-screen  px-2 relative md:bg-[#FFF] md:shadow-md  `}>
 
 
             <div className=' pt-[50px] shrink-0  flex justify-center items-center mb-[95px]' >
