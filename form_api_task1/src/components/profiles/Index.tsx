@@ -23,7 +23,7 @@ export const ProfileTable = () => {
                         </Space>
                     </td>
                 </tr>
-                {/* Add more rows as needed */}
+             
                 <tr className="border-b border-gray-300">
                     <td className="px-6 py-3 border-b-2 border-gray-300 text-left font-semibold font-[Poppins] text-[#000] text-[20px]">Experience</td>
                     <td className="px-6 py-3 text-center space-x-3">

@@ -64,7 +64,7 @@ const EditQuestion = ({ question }: Props) => {
             <div className='md:w-full  mb-[40px] flex justify-between items-center '>
                 <p className="text-[#000] text-[20px] font-semibold font-[Poppins] not-italic">{questionData.question}</p>
 
-                <button  className="pr-20" onClick={(e) => {
+                <button className="pr-20" onClick={(e) => {
                     e.preventDefault()
                     setShowQuestionModal(!showQuestionModal)
                     setQuestionData(question)

@@ -3,22 +3,12 @@ import { Table } from "./Index"
 import Add from "../../assets/Add.svg"
 
 import { useState } from "react"
-// import ParagraphQ from "../QuestionCompFolder/ParagraphQuestion"
-import questionTypeToCompObj from "../MapQuestionTypeToComponent"
-import { Questionmodal } from "../Questionmodal"
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+
 const PersonalInfo = () => {
     const [showTypes, setShowTypes] = useState(false)
-    const [questionType, setQuestionType] = useState("Yes/No")
+  
 
-    const updateQuestionType = (questionType:string)=>{
-        setQuestionType(questionType)
-    }
-    const QuestionTypeComp = questionTypeToCompObj[questionType as keyof typeof questionTypeToCompObj]
-    const addQuestion = (data:unknown)=>{
-        console.log(data)
-    }
-
+ 
     return (
         <div className='mt-[67px] md:w-[595px]'>
             <div className='md:w-full h-[77px] bg-[#D0F7FA] rounded-t-2xl text-[#000] 
@@ -51,14 +41,9 @@ const PersonalInfo = () => {
                     <p className="font-[Poppins] text-[15px] font-semibold leading-6 not-italic">Add a question</p>
                 </div>
                 }
-                {
-                <Questionmodal updateQuestionType={updateQuestionType}
-                    questionType={questionType} addQuestion={addQuestion} actionType={""} formName={""}>
-                    <QuestionTypeComp /> 
-                </Questionmodal>
-            }
+         
             
-
+    
 
 
 
