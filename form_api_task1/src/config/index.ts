@@ -6,7 +6,7 @@ interface Secrets {
     secrets: Secrets;
   }
   
-  let cache: Config | null = null;
+  let cache: Config | null = null; 
   
   const environment = import.meta.env.VITE_APP_ENVIRONMENT || "development";
   
