@@ -3,8 +3,6 @@ import Unorder from "../../assets/unordered.svg"
 import addMore from "../../assets/addMore.svg"
 import {  useState } from "react"
 
-// import { Questionmodal } from "../Questionmodal"
-
 const DropdownQ = () => {
    
 

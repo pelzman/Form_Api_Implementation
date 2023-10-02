@@ -1,10 +1,9 @@
 
-// import deleteImg from "../assets/delete.svg"
 import { Question } from "../slice/dataSlice"
 import { Questionmodal } from "./Questionmodal"
 import { useState } from "react"
 import questionTypeToCompObj from "./MapQuestionTypeToComponent"
-// import { GeneralQuestion } from "./profiles/Profile"
+
 import { editProfileQuestion } from "../slice/dataSlice"
 import { useAppDispatch } from "../store/hooks"
 import edit from "../assets/edit.svg"
@@ -47,17 +46,17 @@ const EditQuestion = ({ question }: Props) => {
     }
 
     const updateQuestionType = (questionType: string) => {
-        // setQuestionType(questionType)
+        
         console.log(questionType)
     }
     const updateQuestion = () => {
-        // return console.log(questionData);
+       
         dispatch(editProfileQuestion(questionData))
         setShowQuestionModal(false)
     }
 
     const QuestionTypeComp = questionTypeToCompObj[questionData.type as keyof typeof questionTypeToCompObj]
-    // console.log("komonq", question)
+   
     return (
         <div className="pt-8">
             <p className="text-[#000] text-[20px] font-semibold font-[Poppins] not-italic">{questionData.type}</p>
@@ -80,8 +79,6 @@ const EditQuestion = ({ question }: Props) => {
             }
 
         </div>
-
-
     )
 }
 

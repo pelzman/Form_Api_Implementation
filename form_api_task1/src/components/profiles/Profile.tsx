@@ -20,10 +20,9 @@ export interface GeneralQuestion {
 const Profile = () => {
     const{data} = useAppSelector((state)=>state.allData)
     const dispatch = useAppDispatch()
-    // console.log("data", data)
+  
 
     const profileQuestions= data.attributes.profile.profileQuestions
-    console.log("profile", profileQuestions)
  
 
     const [showQuestionModal, setShowQuestionModal] = useState(false)
@@ -59,7 +58,7 @@ const Profile = () => {
                 break;
             }
             default:
-                console.log(data)
+                
                 break;
         }
     }

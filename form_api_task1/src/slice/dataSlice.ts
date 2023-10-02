@@ -56,7 +56,7 @@ export const createQuestion = createAsyncThunk(
   "allData/addQuestion",
   async (payload: Record<string, string>, thunkAPI) => {
     try {
-      const response = await axios.post("/", payload);
+      const response = await axios.post("/api/266.4495344352841/programs/non/application-form", payload);
 
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any

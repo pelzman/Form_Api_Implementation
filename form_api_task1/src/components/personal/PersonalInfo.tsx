@@ -6,8 +6,6 @@ import { useState } from "react"
 
 const PersonalInfo = () => {
     const [showTypes, setShowTypes] = useState(false)
-  
-
  
     return (
         <div className='mt-[67px] md:w-[595px]'>
@@ -33,8 +31,6 @@ const PersonalInfo = () => {
 
             <div className="overflow-x-auto">
                 <Table />
-
-
 
                 { <div className="flex justify-start items-center my-[65px] gap-[20px] cursor-pointer" onClick={() => setShowTypes(!showTypes)}>
                     <img src={Add} alt="" />

@@ -2,9 +2,7 @@ import Unorder from "../../assets/unordered.svg"
 import addMore from "../../assets/addMore.svg"
 
 
-const MultipleQ = () => {
-    // const [check, setCheck] = useState(true)
-  
+const MultipleQ = () => {    
     return (
 
         <div>
