@@ -1,4 +1,4 @@
-// import { useState } from "react"
+
 import deleteImg from "../assets/delete.svg"
 import arrow from "../assets/arrow.svg"
 import { useState } from "react"
@@ -22,8 +22,7 @@ interface Props {
 const questionTypeArray = ["Paragraph", "Yes/No", "Dropdown", "Multiple Choice", "Video question", "Date", "Number", "File upload"]
 export const Questionmodal: React.FC<Props> = ({ children, deleteQuestion, updateQuestionType, questionType, addQuestion, actionType, formName }) => {
     const [showDropdown, setShowDropDown] = useState(false)
-    // const [isSelected, setSelected] = useState(DropMenus[0])
-    // console.log(updateQuestionType)
+
     const toggleToShowDropdown = () => {
         setShowDropDown((prev: boolean) => !prev)
     }
@@ -83,8 +82,7 @@ export const Questionmodal: React.FC<Props> = ({ children, deleteQuestion, updat
             return addQuestion(formObj)
         }
         return window.alert("please fill all field")
-        // for (let value of formData.values()) { console.log( value) }
-        // addQuestion(formData)
+      
 
     }
     return (

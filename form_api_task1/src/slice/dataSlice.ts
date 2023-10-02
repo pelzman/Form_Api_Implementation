@@ -4,36 +4,30 @@ import axios from "../api/httpService";
 export interface DataDetails {
   id?: string;
   attributes: Attributes;
-  //   paragraph?: string;
-  //   dropdown?: string; 
-  //   yesorNo?: string;
-  //   profilePic?: string;
-  //   multipleChoice?: string;
-  //   video?: string;
 }
 
 interface Profile {
-  education?: object
-  experience?:object
-  resumse?: object
-  profileQuestions: Question[]
+  education?: object;
+  experience?: object;
+  resumse?: object;
+  profileQuestions: Question[];
 }
 
 interface Attributes {
-    coverImage?: string
-    customisedQuestions: Question[]
-    profile: Profile
+  coverImage?: string;
+  customisedQuestions: Question[];
+  profile: Profile;
 }
 
- export interface Question {
-    id:string
-    choices:string[]
-    disqualify:boolean
-    maxChoice: number
-    other:boolean
-    question:string
-    type:string
- }
+export interface Question {
+  id: string;
+  choices: string[];
+  disqualify: boolean;
+  maxChoice: number;
+  other: boolean;
+  question: string;
+  type: string;
+}
 
 export interface InitialUserState {
   data: DataDetails;
@@ -43,16 +37,16 @@ export interface InitialUserState {
 
 const initialState: InitialUserState = {
   data: {
-    attributes:  {
+    attributes: {
       coverImage: "",
       customisedQuestions: [],
       profile: {
         education: {},
         experience: {},
         resumse: {},
-        profileQuestions:[]
-      }
-    }
+        profileQuestions: [],
+      },
+    },
   },
 
   error: "",
@@ -64,9 +58,6 @@ export const createQuestion = createAsyncThunk(
     try {
       const response = await axios.post("/", payload);
 
-      // localStorage.setItem("user", JSON.stringify(response.data.confirmUser));
-      // localStorage.setItem("token", JSON.stringify(response.data.token));
-      // console.log("response", response.data.token)
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -93,9 +84,6 @@ export const getData = createAsyncThunk(
       );
       console.log(response.data);
 
-      // localStorage.setItem("user", JSON.stringify(response.data.confirmUser));
-      // localStorage.setItem("token", JSON.stringify(response.data.token));
-      // console.log("response", response.data.token)
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
@@ -113,8 +101,6 @@ export const getData = createAsyncThunk(
   }
 );
 
-
-
 export const dataSlice = createSlice({
   name: "allData",
   initialState,
@@ -123,20 +109,17 @@ export const dataSlice = createSlice({
       state.data = action.payload.data;
     },
     addProfileQuestion: (state, action) => {
-      state.data.attributes.profile.profileQuestions.push(action.payload)
+      state.data.attributes.profile.profileQuestions.push(action.payload);
     },
-    editProfileQuestion:(state, action)=>{
-        state.data.attributes.profile.profileQuestions = state.data.attributes.profile.profileQuestions.map((question)=>{
-            if(question.id === action.payload.id ) {
-                question === action.payload
-            } 
-            return question  
-        }
-          
-        
-        )
-      
-    }
+    editProfileQuestion: (state, action) => {
+      state.data.attributes.profile.profileQuestions =
+        state.data.attributes.profile.profileQuestions.map((question) => {
+          if (question.id === action.payload.id) {
+            question === action.payload;
+          }
+          return question;
+        });
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(createQuestion.pending, (state) => {
@@ -151,29 +134,32 @@ export const dataSlice = createSlice({
       state.error = action.payload as string;
     });
     builder.addCase(getData.pending, (state) => {
-        state.error = "";
-    })
+      state.error = "";
+    });
     builder.addCase(getData.fulfilled, (state, action) => {
-        state.data = action.payload.data;
-        state.error = ""    
-    })
+      state.data = action.payload.data;
+      state.error = "";
+    });
     builder.addCase(getData.rejected, (state, action) => {
-        state.data = {attributes:  {
+      state.data = {
+        attributes: {
           coverImage: "http://",
           customisedQuestions: [],
           profile: {
             education: {},
             experience: {},
             resumse: {},
-            profileQuestions:[]
-          }
-        }}
-        state.error = action.payload as string
-    })
+            profileQuestions: [],
+          },
+        },
+      };
+      state.error = action.payload as string;
+    });
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { editProfileQuestion, questionSuccess, addProfileQuestion } = dataSlice.actions;
+export const { editProfileQuestion, questionSuccess, addProfileQuestion } =
+  dataSlice.actions;
 
 export default dataSlice.reducer;
