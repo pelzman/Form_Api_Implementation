@@ -47,6 +47,7 @@ const Profile = () => {
                 if(questionData?.question === undefined ||  questionData?.other === undefined) return;
                 const newQuestion = new NewQuestion([], false, 0, questionData?.other, questionData?.question, questionType.toString())
                 dispatch(addProfileQuestion(newQuestion))
+                dispatch(updateData({data}))
                 setShowQuestionModal(false)
                 break;
             }
@@ -55,6 +56,7 @@ const Profile = () => {
                 
                 const newQuestion = new NewQuestion(questionData.choices, false, 0, questionData?.other, questionData?.question, questionType.toString())
                 dispatch(addProfileQuestion(newQuestion))
+                dispatch(updateData({data}))
                 setShowQuestionModal(false)
                 break;
             }
