@@ -7,7 +7,7 @@ import questionTypeToCompObj from "../MapQuestionTypeToComponent"
 import { Questionmodal } from "../Questionmodal"
 import { useAppSelector,useAppDispatch} from "../../store/hooks"
 import NewQuestion from "../../classes/NewQuestion"
-import { addProfileQuestion } from "../../slice/dataSlice"
+import { addProfileQuestion, updateData } from "../../slice/dataSlice"
 import EditQuestion from "../EditQuestion" 
 
 export interface GeneralQuestion {
@@ -33,26 +33,27 @@ const Profile = () => {
     
     
     const QuestionTypeComp = questionTypeToCompObj[questionType as keyof typeof questionTypeToCompObj]
-    const addQuestion = (data: Partial<GeneralQuestion>) => {
+    const addQuestion = (questionData: Partial<GeneralQuestion>) => {
         switch (questionType) {
             case "Paragraph": {
-                if(data?.question === undefined) return;
-                const newQuestion = new NewQuestion([], false, 0, false, data?.question, questionType.toString())
+                if(questionData?.question === undefined) return;
+                const newQuestion = new NewQuestion([], false, 0, false, questionData?.question, questionType.toString())
                 dispatch(addProfileQuestion(newQuestion))
+                dispatch(updateData({data}))
                 setShowQuestionModal(false)
                 break;
             }        
             case "Yes/No": {
-                if(data?.question === undefined ||  data?.other === undefined) return;
-                const newQuestion = new NewQuestion([], false, 0, data?.other, data?.question, questionType.toString())
+                if(questionData?.question === undefined ||  questionData?.other === undefined) return;
+                const newQuestion = new NewQuestion([], false, 0, questionData?.other, questionData?.question, questionType.toString())
                 dispatch(addProfileQuestion(newQuestion))
                 setShowQuestionModal(false)
                 break;
             }
             case "Dropdown":{
-                if(data?.question === undefined ||  data?.other === undefined || data?.choices===undefined) return; 
+                if(questionData?.question === undefined ||  questionData?.other === undefined || questionData?.choices===undefined) return; 
                 
-                const newQuestion = new NewQuestion(data.choices, false, 0, data?.other, data?.question, questionType.toString())
+                const newQuestion = new NewQuestion(questionData.choices, false, 0, questionData?.other, questionData?.question, questionType.toString())
                 dispatch(addProfileQuestion(newQuestion))
                 setShowQuestionModal(false)
                 break;
@@ -86,7 +87,7 @@ const Profile = () => {
                 {showQuestionModal &&
                     <Questionmodal updateQuestionType={updateQuestionType}
                     questionType={questionType} addQuestion={addQuestion} deleteQuestion={deleteQuestion}
-                    actionType="add" formName={""}                       >
+                    actionType="add" formName={""} >
                         <QuestionTypeComp  />
                     </Questionmodal>
                 }

@@ -46,17 +46,17 @@ const EditQuestion = ({ question }: Props) => {
     }
 
     const updateQuestionType = (questionType: string) => {
-        
+
         console.log(questionType)
     }
     const updateQuestion = () => {
-       
+
         dispatch(editProfileQuestion(questionData))
         setShowQuestionModal(false)
     }
 
     const QuestionTypeComp = questionTypeToCompObj[questionData.type as keyof typeof questionTypeToCompObj]
-   
+
     return (
         <div className="pt-8">
             <p className="text-[#000] text-[20px] font-semibold font-[Poppins] not-italic">{questionData.type}</p>
@@ -65,8 +65,10 @@ const EditQuestion = ({ question }: Props) => {
 
                 <button className="pr-20" onClick={(e) => {
                     e.preventDefault()
+                    if (showQuestionModal) {
+                        setQuestionData(question)
+                    }
                     setShowQuestionModal(!showQuestionModal)
-                    setQuestionData(question)
                 }
 
                 }> <img src={edit} alt="" />   </button>

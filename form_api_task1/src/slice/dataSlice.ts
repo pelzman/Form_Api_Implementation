@@ -35,6 +35,10 @@ export interface InitialUserState {
   error: string;
 }
 
+interface RequestBody {
+  data: DataDetails
+}
+
 const initialState: InitialUserState = {
   data: {
     attributes: {
@@ -56,7 +60,7 @@ export const createQuestion = createAsyncThunk(
   "allData/addQuestion",
   async (payload: Record<string, string>, thunkAPI) => {
     try {
-      const response = await axios.post("/api/266.4495344352841/programs/non/application-form", payload);
+      const response = await axios.post("/", payload);
 
       return response.data;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,12 +79,38 @@ export const createQuestion = createAsyncThunk(
   }
 );
 
+
 export const getData = createAsyncThunk(
   "allData/getDatas",
   async (_, thunkAPI) => {
     try {
       const response = await axios.get(
         "/api/266.4495344352841/programs/non/application-form"
+      );
+      console.log(response.data.data);
+
+      return response.data;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      if (error.response) {
+        console.log(error.response);
+        return thunkAPI.rejectWithValue(error.response.data);
+      }
+      if (error.request) {
+        return thunkAPI.rejectWithValue("Network Error");
+      }
+      if (error.message) {
+        return thunkAPI.rejectWithValue(error.message);
+      }
+    }
+  }
+);
+export const updateData = createAsyncThunk(
+  "allData/updateDatas",
+  async (payload: RequestBody, thunkAPI) => {
+    try {
+      const response = await axios.put(
+        "/api/607.1631270676841/programs/non/application-form", payload
       );
       console.log(response.data);
 
@@ -115,7 +145,7 @@ export const dataSlice = createSlice({
       state.data.attributes.profile.profileQuestions =
         state.data.attributes.profile.profileQuestions.map((question) => {
           if (question.id === action.payload.id) {
-            question === action.payload;
+            question = action.payload;
           }
           return question;
         });
